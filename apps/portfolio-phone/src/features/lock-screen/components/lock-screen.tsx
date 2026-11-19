@@ -47,8 +47,10 @@ export function LockScreen({ owner, onUnlock }: Props) {
 				<p className="font-semibold text-[clamp(72px,26cqw,104px)] leading-[0.95] tracking-[-0.04em] tabular-nums opacity-95 [font-feature-settings:'ss01']">
 					{now ? formatTime(now) : "\u00a0"}
 				</p>
-				<p className="mt-2 text-[13px] opacity-85">
-					{owner.name} · {owner.headline}
+				{/* Two lines, so a long headline never runs from one edge of the phone to the other. */}
+				<p className="mt-3 text-balance px-8 text-center text-[13px] leading-snug opacity-85">
+					<span className="block font-semibold">{owner.name}</span>
+					{owner.headline}
 				</p>
 			</div>
 
