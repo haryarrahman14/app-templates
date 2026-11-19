@@ -13,7 +13,7 @@ import type { ReactNode } from "react";
 import { ErrorScreen } from "@/components/layout/error-screen";
 import { NotFoundScreen } from "@/components/layout/not-found-screen";
 import { appearanceScript } from "@/lib/appearance";
-import { APP_NAME, APP_TAGLINE } from "@/lib/site";
+import { APP_NAME, APP_TAGLINE, SITE_URL } from "@/lib/site";
 import appCss from "@/styles/app.css?url";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -23,10 +23,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
 			{ title: APP_NAME },
 			{ name: "description", content: APP_TAGLINE },
+			// What a link preview shows when the address is shared.
+			{ property: "og:type", content: "website" },
+			{ property: "og:title", content: APP_NAME },
+			{ property: "og:description", content: APP_TAGLINE },
+			{ property: "og:url", content: SITE_URL },
+			{ property: "og:image", content: `${SITE_URL}/og.jpg` },
+			{ name: "twitter:card", content: "summary_large_image" },
 			{ name: "theme-color", media: "(prefers-color-scheme: light)", content: "#fafafa" },
 			{ name: "theme-color", media: "(prefers-color-scheme: dark)", content: "#111111" },
 		],
-		links: [{ rel: "stylesheet", href: appCss }],
+		links: [
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+		],
 		// Theme, accent and density are set before paint.
 		scripts: [{ children: `${themeScript("system")};${appearanceScript}` }],
 	}),

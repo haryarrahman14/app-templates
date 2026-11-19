@@ -64,6 +64,7 @@ Every app has the same layout: `src/routes` (thin route files), `src/features/<f
 | Sign-in | Off by default: `REQUIRE_SIGN_IN` in `src/lib/session.ts`. Turn it on and replace the functions marked `PLUG REAL AUTH HERE` with their provider's browser SDK. The guard is in `src/routes/_app.tsx` |
 | Navigation | `src/components/layout` (sidebar, dock or top bar) and the matching file in `src/routes` |
 | Page titles and meta | `head` in each route file, built by `pageTitle()` in `src/lib/site.ts` |
+| Tab icon and link preview | `public/favicon.svg`, `public/og.jpg` (1200×630), and `SITE_URL`, `APP_NAME`, `APP_TAGLINE` in `src/lib/site.ts` |
 | Deploy address | `routes[0].pattern` and `name` in the app's `wrangler.jsonc` (see `docs/deploy-cloudflare.md`) |
 
 ## 4. Rules that keep it working

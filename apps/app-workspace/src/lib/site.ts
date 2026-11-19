@@ -4,3 +4,6 @@ export const APP_TAGLINE = "A calm place for your team's documents, tasks and pl
 
 /** "Tasks · Paperwren": the title for one screen. */
 export const pageTitle = (name: string) => ({ meta: [{ title: `${name} · ${APP_NAME}` }] });
+
+/** Where this app is published. A link preview needs the full address of public/og.jpg (1200×630). */
+export const SITE_URL = "https://paperwren.blog.haryarrahman.tech";

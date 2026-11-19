@@ -5,7 +5,7 @@ import type { QueryClient } from "@tanstack/react-query";
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { preferencesScript } from "@/lib/preferences";
-import { APP_NAME } from "@/lib/site";
+import { APP_NAME, APP_TAGLINE, SITE_URL } from "@/lib/site";
 import appCss from "@/styles/app.css?url";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
@@ -14,8 +14,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 			{ charSet: "utf-8" },
 			{ name: "viewport", content: "width=device-width, initial-scale=1" },
 			{ title: APP_NAME },
+			{ name: "description", content: APP_TAGLINE },
+			// What a link preview shows when the address is shared.
+			{ property: "og:type", content: "website" },
+			{ property: "og:title", content: APP_NAME },
+			{ property: "og:description", content: APP_TAGLINE },
+			{ property: "og:url", content: SITE_URL },
+			{ property: "og:image", content: `${SITE_URL}/og.jpg` },
+			{ name: "twitter:card", content: "summary_large_image" },
 		],
-		links: [{ rel: "stylesheet", href: appCss }],
+		links: [
+			{ rel: "stylesheet", href: appCss },
+			{ rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+		],
 		scripts: [{ children: themeScript("system") }, { children: preferencesScript }],
 	}),
 	shellComponent: RootDocument,
