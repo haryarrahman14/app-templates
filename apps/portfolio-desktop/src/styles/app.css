@@ -1,0 +1,153 @@
+@import "@repo/ui/styles/globals.css";
+
+/* Scan this app's own sources too (the ui package scans itself). */
+@source "../";
+
+/*
+ * Palette (see the repo's CLAUDE.md → Colour): pure neutral grays with zero chroma, near-black text and ONE
+ * saturated accent, tomato #E5432D (white text on it), kept to the primary action, the active state, selection,
+ * links and focus. As small text on white it darkens to #C7361F (--tint-text) for contrast.
+ * Category colours are the shared system-style set, used only as solid fills (app tiles, covers, dots).
+ * Settings → Accent sets --user-tint-* at runtime (lib/preferences.tsx); --tint falls back to tomato.
+ */
+:root {
+	--tint: var(--user-tint-light, #e5432d);
+	--tint-text: var(--user-tint-light, #c7361f);
+	--tint-foreground: var(--user-tint-foreground, #ffffff);
+
+	--background: #ffffff;
+	--foreground: #222222;
+	--card: #ffffff;
+	--card-foreground: #222222;
+	--popover: #ffffff;
+	--popover-foreground: #222222;
+	--secondary: #f7f7f7;
+	--secondary-foreground: #222222;
+	--muted: #f7f7f7;
+	--muted-foreground: #6a6a6a;
+	--accent: #ebebeb;
+	--accent-foreground: #222222;
+	--destructive: #ff3b30;
+	--border: #dddddd;
+	--input: #dddddd;
+	--ring: var(--tint);
+
+	--chart-1: var(--tint);
+	--chart-2: #6a6a6a;
+	--chart-3: #b0b0b0;
+	--chart-4: var(--blue);
+	--chart-5: var(--green);
+
+	--sidebar: #f7f7f7cc;
+	--sidebar-foreground: #222222;
+	--sidebar-primary: var(--tint);
+	--sidebar-primary-foreground: var(--tint-foreground);
+	--sidebar-accent: #2222220f;
+	--sidebar-accent-foreground: #222222;
+	--sidebar-border: #dddddd;
+	--sidebar-ring: var(--tint);
+
+	--glass: #ffffffb8;
+	--glass-border: #ffffff99;
+	--shadow-color: 0 0% 0%;
+
+	/* Category colours: one shared system-style set, solid fills only. */
+	--red: #ff3b30;
+	--orange: #ff9500;
+	--yellow: #ffcc00;
+	--green: #34c759;
+	--teal: #30b0c7;
+	--blue: #007aff;
+	--gray: #8e8e93;
+	--graphite: #1c1c1e;
+
+	/* Avatar placeholder: neutral gray with dark initials. */
+	--avatar: #eaeaea;
+	--avatar-foreground: #222222;
+
+	/* Notes: white paper, the list on the neutral surface. */
+	--paper: #ffffff;
+	--paper-list: #f7f7f7;
+
+	/* Terminal: a near-black screen, white and gray text, a green prompt. */
+	--terminal-bg: #121212;
+	--terminal-fg: #ffffff;
+	--terminal-muted: #b0b0b0;
+	--terminal-prompt: #34c759;
+}
+
+.dark {
+	--tint: var(--user-tint-dark, #e5432d);
+	--tint-text: var(--user-tint-dark, #e5432d);
+	--tint-foreground: var(--user-tint-foreground, #ffffff);
+
+	--background: #121212;
+	--foreground: #ffffff;
+	--card: #1e1e1e;
+	--card-foreground: #ffffff;
+	--popover: #2a2a2a;
+	--popover-foreground: #ffffff;
+	--secondary: #2a2a2a;
+	--secondary-foreground: #ffffff;
+	--muted: #2a2a2a;
+	--muted-foreground: #b0b0b0;
+	--accent: #333333;
+	--accent-foreground: #ffffff;
+	--destructive: #ff3b30;
+	--border: #3a3a3a;
+	--input: #3a3a3a;
+
+	--chart-2: #b0b0b0;
+	--chart-3: #6a6a6a;
+
+	--sidebar: #1e1e1ecc;
+	--sidebar-foreground: #ffffff;
+	--sidebar-accent: #ffffff14;
+	--sidebar-accent-foreground: #ffffff;
+	--sidebar-border: #3a3a3a;
+
+	--glass: #1e1e1eb8;
+	--glass-border: #ffffff1a;
+	--shadow-color: 0 0% 0%;
+
+	--avatar: #2a2a2a;
+	--avatar-foreground: #ffffff;
+
+	--paper: #1e1e1e;
+	--paper-list: #121212;
+}
+
+@theme inline {
+	--color-tint-text: var(--tint-text);
+	--color-red: var(--red);
+	--color-orange: var(--orange);
+	--color-yellow: var(--yellow);
+	--color-green: var(--green);
+	--color-teal: var(--teal);
+	--color-blue: var(--blue);
+	--color-gray: var(--gray);
+	--color-graphite: var(--graphite);
+	--color-avatar: var(--avatar);
+	--color-avatar-foreground: var(--avatar-foreground);
+	--color-paper: var(--paper);
+	--color-paper-list: var(--paper-list);
+	--color-terminal-bg: var(--terminal-bg);
+	--color-terminal-fg: var(--terminal-fg);
+	--color-terminal-muted: var(--terminal-muted);
+	--color-terminal-prompt: var(--terminal-prompt);
+}
+
+/* A desktop, not a document: no rubber-band scrolling of the whole page. */
+html,
+body {
+	overscroll-behavior: none;
+}
+
+/* Settings → Reduce motion, on top of the OS-level prefers-reduced-motion handled in @repo/ui. */
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+	animation-duration: 0.01ms !important;
+	animation-iteration-count: 1 !important;
+	transition-duration: 0.01ms !important;
+}

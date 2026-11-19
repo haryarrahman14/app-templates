@@ -1,0 +1,15 @@
+node_modules
+dist
+.next
+.turbo
+.tanstack
+.output
+.vinxi
+*.tsbuildinfo
+.env*
+!.env.example
+.DS_Store
+design/references
+next-env.d.ts
+.open-next
+.wrangler

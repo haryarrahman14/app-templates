@@ -1,0 +1,117 @@
+import { proof } from "./proof.ts";
+import type { Project } from "./types.ts";
+
+/** Sources: CV "Projects" + GitHub repo survey (repo-verified details only). */
+export const projects: Project[] = [
+	{
+		slug: "penawaranku",
+		name: "Penawaranku",
+		tagline: "AI cost-estimation (RAB) document generator",
+		kind: "Thesis",
+		period: "2025 – 2026",
+		status: "Live",
+		summary:
+			"Final-year thesis: an AI system that drafts cost-estimation (RAB) documents from reference data, saved only after you confirm.",
+		bullets: [
+			"Hybrid RAG inside Postgres: pgvector and full-text search, fused with Reciprocal Rank Fusion.",
+			"Two-phase flow: an AI draft first, saved only after the user confirms.",
+			"Multi-tenant workspaces with roles and a quotation approval workflow.",
+			"DOCX templates rendered to PDF through Gotenberg.",
+		],
+		metrics: [{ value: "650+", label: "commits, built solo" }],
+		tech: [
+			"Next.js",
+			"Supabase",
+			"pgvector",
+			"RAG",
+			"text-embedding-3-small",
+			"docxtemplater",
+			"Gotenberg",
+		],
+		links: [{ label: "penawaranku.my.id", href: "https://penawaranku.my.id" }],
+		gallery: proof.penawaranku,
+		featured: true,
+	},
+	{
+		slug: "arsip-cetak",
+		name: "Arsip Cetak",
+		tagline: "Multi-tenant SaaS for print shops",
+		kind: "Side project",
+		period: "2026 – present",
+		status: "In development",
+		summary:
+			"A mobile-first SaaS that lets print-shop owners run inventory and invoicing from their phone.",
+		bullets: [
+			"Invoice forms generated from each shop’s own .docx templates, with DOCX and PDF output.",
+			"A no-login customer portal over tokenized links.",
+			"Web push notifications and an offline-capable PWA.",
+			"Workspace roles, an audit log, row-level-security tests and database backups to Cloudflare R2.",
+		],
+		metrics: [{ value: "660+", label: "commits, built solo" }],
+		tech: ["Next.js", "Supabase", "Cloudflare R2", "Gotenberg"],
+		links: [{ label: "arsipcetak.web.id", href: "https://arsipcetak.web.id" }],
+		gallery: proof.arsipCetak,
+		featured: true,
+	},
+	{
+		slug: "lomba-agustusan-2026",
+		name: "Lomba Agustusan 2026",
+		tagline: "Competition app for a neighbourhood Independence Day event",
+		kind: "Community",
+		period: "Jul – Aug 2026",
+		status: "Completed",
+		summary:
+			"A mobile-first site for Karang Taruna RT.002’s Independence Day competitions: registration, brackets, scoring and door prizes.",
+		bullets: [
+			"Per-competition registration with shareable invite links.",
+			"Tournament brackets that distribute byes and lock finished matches.",
+			"Committee scoring, draws, and big-screen displays for the event.",
+		],
+		metrics: [],
+		tech: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Motion"],
+		links: [
+			{
+				label: "agustusan-2026.katar-002-04-jati.web.id",
+				href: "https://agustusan-2026.katar-002-04-jati.web.id",
+			},
+		],
+		gallery: proof.lomba,
+		featured: false,
+	},
+	{
+		slug: "portfolio",
+		name: "This site",
+		tagline: "My portfolio, with a background that follows the visitor’s weather",
+		kind: "Side project",
+		period: "Nov 2026 – present",
+		status: "Live",
+		summary:
+			"The site you’re reading: a TanStack Start app whose facts all come from one typed content package.",
+		bullets: [
+			"Story, case studies, and a CV that prints to an ATS-ready PDF.",
+			"Background follows the visitor’s weather: rain, snow, stars or soft gradients.",
+			"Prerendered on Cloudflare Workers, with one small weather route.",
+			"Next: an admin on NestJS, Neon and R2, and MCP to seed it.",
+		],
+		metrics: [],
+		tech: [
+			"TanStack Start",
+			"TanStack Router",
+			"React Query",
+			"React",
+			"TypeScript",
+			"Tailwind CSS",
+			"Radix UI",
+			"GSAP",
+			"Vite",
+			"Cloudflare",
+			"Cloudflare Workers",
+			"Turborepo",
+			"pnpm",
+			"Biome",
+			"Playwright",
+		],
+		links: [],
+		featured: false,
+	},
+];

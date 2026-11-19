@@ -1,0 +1,191 @@
+@import "@repo/ui/styles/globals.css";
+
+/* Scan this app's own sources too (the ui package scans itself). */
+@source "../";
+
+/*
+ * Measured from shipping products (CLAUDE.md → Colour): pure neutral surfaces, near-black text,
+ * one saturated green accent used sparingly. The only off-white is #F5F5F5 (border #E5E5E5).
+ * --tint-text is the accent as readable text: deeper green on white, the accent itself in dark.
+ */
+@theme inline {
+	/* Text and marks drawn straight on the wallpaper (set per wallpaper below). */
+	--color-on-wall: var(--on-wall);
+	--color-tint-text: var(--tint-text);
+}
+
+:root {
+	--tint: #1fb85a;
+	--tint-foreground: #0e0e10;
+	--tint-text: #14803c;
+
+	--background: #ffffff;
+	--foreground: #121212;
+	--card: #ffffff;
+	--popover: #ffffff;
+	--secondary: #f5f5f5;
+	--secondary-foreground: #121212;
+	--muted: #f5f5f5;
+	--muted-foreground: #6b6b6b;
+	--accent: #f4f4f4;
+	--accent-foreground: #121212;
+	--destructive: #ff3b30;
+	--border: #e5e5e5;
+	--input: #e5e5e5;
+	--ring: #1fb85a80;
+
+	--chart-1: var(--tint);
+	--chart-2: #6b6b6b;
+	--chart-3: #b3b3b3;
+	--chart-4: #007aff;
+	--chart-5: #34c759;
+
+	--sidebar: #f5f5f5;
+	--sidebar-accent: #ebebeb;
+	--glass: #ffffffa6;
+	--glass-border: #e5e5e5;
+	--shadow-color: 0 0% 7%;
+
+	/* Grouped (inset list) surfaces inside the phone. */
+	--grouped: #f5f5f5;
+	--grouped-card: #ffffff;
+	--grouped-line: #e5e5e5;
+	/* Received message bubbles. */
+	--bubble: #ebebeb;
+	/* Cards on the wallpaper (widgets, notifications) and the dock. */
+	--wall-card: #ffffff;
+	--wall-card-border: #e5e5e5;
+	--wall-card-text: #121212;
+	--dock: #ffffff80;
+	--dock-border: #e5e5e580;
+	/* Device body: neutral aluminium. */
+	--frame: #c8c8c8;
+	--frame-button: #a8a8a8;
+	/* Page behind the device: flat neutral. */
+	--backdrop: #ffffff;
+}
+
+.dark {
+	--tint: #1fb85a;
+	--tint-foreground: #0e0e10;
+	--tint-text: #1fb85a;
+
+	--background: #121212;
+	--foreground: #ffffff;
+	--card: #1e1e1e;
+	--popover: #2e2e2e;
+	--secondary: #2e2e2e;
+	--secondary-foreground: #ffffff;
+	--muted: #1e1e1e;
+	--muted-foreground: #b3b3b3;
+	--accent: #2e2e2e;
+	--accent-foreground: #ffffff;
+	--destructive: #ff3b30;
+	--border: #3a3a3a;
+	--input: #3a3a3a;
+	--ring: #1fb85a80;
+
+	--chart-1: var(--tint);
+	--chart-2: #b3b3b3;
+	--chart-3: #6b6b6b;
+	--chart-4: #007aff;
+	--chart-5: #34c759;
+
+	--sidebar: #1e1e1e;
+	--sidebar-accent: #2e2e2e;
+	--glass: #1e1e1ea6;
+	--glass-border: #3a3a3a;
+	--shadow-color: 0 0% 0%;
+
+	--grouped: #121212;
+	--grouped-card: #1e1e1e;
+	--grouped-line: #3a3a3a;
+	--bubble: #2e2e2e;
+	--wall-card: #1e1e1e;
+	--wall-card-border: #2e2e2e;
+	--wall-card-text: #ffffff;
+	--dock: #ffffff14;
+	--dock-border: #ffffff14;
+	--frame: #2e2e2e;
+	--frame-button: #3a3a3a;
+	--backdrop: #121212;
+}
+
+/* Accents: Settings → Accent sets data-accent on <html>. Green is the default above. */
+[data-accent="blue"] {
+	--tint: #007aff;
+	--tint-foreground: #ffffff;
+	--tint-text: #007aff;
+	--ring: #007aff80;
+}
+[data-accent="teal"] {
+	--tint: #30b0c7;
+	--tint-foreground: #121212;
+	--tint-text: #30b0c7;
+	--ring: #30b0c780;
+}
+[data-accent="red"] {
+	--tint: #ff3b30;
+	--tint-foreground: #ffffff;
+	--tint-text: #ff3b30;
+	--ring: #ff3b3080;
+}
+
+/* Wallpapers: flat fields. Add one here and in lib/preferences.tsx. */
+:root,
+[data-wallpaper="plain"] {
+	--wallpaper: #f5f5f5;
+	--on-wall: #121212;
+}
+.dark,
+.dark[data-wallpaper="plain"],
+.dark [data-wallpaper="plain"] {
+	--wallpaper: #121212;
+	--on-wall: #ffffff;
+}
+[data-wallpaper="green"],
+.dark[data-wallpaper="green"],
+.dark [data-wallpaper="green"] {
+	--wallpaper: #1fb85a;
+	--on-wall: #0e0e10;
+}
+[data-wallpaper="black"],
+.dark[data-wallpaper="black"],
+.dark [data-wallpaper="black"] {
+	--wallpaper: #000000;
+	--on-wall: #ffffff;
+}
+[data-wallpaper="white"],
+.dark[data-wallpaper="white"],
+.dark [data-wallpaper="white"] {
+	--wallpaper: #ffffff;
+	--on-wall: #121212;
+}
+
+@utility wallpaper {
+	background: var(--wallpaper);
+}
+
+@utility backdrop {
+	background: var(--backdrop);
+}
+
+/* Returning visitors who unlocked this session skip the lock screen before hydration. */
+html[data-unlocked] [data-lock-screen] {
+	display: none;
+}
+
+html[data-reduce-motion] *,
+html[data-reduce-motion] *::before,
+html[data-reduce-motion] *::after {
+	animation-duration: 0.01ms !important;
+	transition-duration: 0.01ms !important;
+	scroll-behavior: auto !important;
+}
+
+.no-scrollbar {
+	scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+	display: none;
+}

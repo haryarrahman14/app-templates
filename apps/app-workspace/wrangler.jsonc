@@ -1,0 +1,10 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "tpl-paperwren",
+	"compatibility_date": "2026-11-01",
+	// Static files only: there is no Worker script, so nothing runs per request. Any address without a file gets
+	// the app shell, and the router takes it from there in the browser.
+	"assets": { "directory": "./dist/client", "not_found_handling": "single-page-application" },
+	// The preview's one address. DNS for the domain is on Cloudflare, so a deploy creates the record and certificate.
+	"routes": [{ "pattern": "paperwren.blog.haryarrahman.tech", "custom_domain": true }]
+}

@@ -1,0 +1,194 @@
+@import "@repo/ui/styles/globals.css";
+
+/* Scan this app's own sources too (the ui package scans itself). */
+@source "../";
+
+/*
+ * Palette: pure neutral surfaces (no tint), near-black text, ink primary buttons, and ONE colour,
+ * highlighter yellow, used like a highlighter: text selection, the active item, checked to-dos and
+ * switches (a dark glyph on it), unread dots and highlights. It is never used as text. Links are ink
+ * and underlined; the focus ring is ink (white in dark). Settings → Appearance can swap the colour at
+ * runtime by setting --accent-light / --accent-dark on <html> (see src/lib/appearance.ts).
+ */
+:root {
+	--tint: var(--accent-light, #ffc61a);
+	--tint-foreground: #1a1a1a;
+	--link: #1a1a1a;
+
+	--background: #fafafa;
+	--foreground: #1a1a1a;
+	--card: #ffffff;
+	--popover: #ffffff;
+	--primary: #1a1a1a;
+	--primary-foreground: #ffffff;
+	--secondary: #f4f4f4;
+	--secondary-foreground: #1a1a1a;
+	--muted: #f4f4f4;
+	--muted-foreground: #6b6b6b;
+	--accent: #f0f0f0;
+	--accent-foreground: #1a1a1a;
+	--destructive: #d70015;
+	--border: #eaeaea;
+	--input: #dedede;
+	--ring: #1a1a1a66;
+
+	--chart-1: var(--tint);
+	--chart-2: #8e8e93;
+	--chart-3: #c7c7cc;
+	--chart-4: var(--cat-green);
+	--chart-5: var(--cat-orange);
+
+	--sidebar: #fafafad9;
+	--sidebar-foreground: var(--foreground);
+	--sidebar-primary: var(--tint);
+	--sidebar-primary-foreground: var(--tint-foreground);
+	--sidebar-accent: #1a1a1a12;
+	--sidebar-accent-foreground: var(--foreground);
+	--sidebar-border: var(--border);
+	--sidebar-ring: var(--ring);
+
+	--glass: #ffffffb3;
+	--glass-border: #ffffff99;
+	--shadow-color: 0 0% 0%;
+
+	/* Category set (tags, list dots, calendar chips, priorities, covers): a solid fill, and an ink for
+	   text on that fill at 12–16% alpha. */
+	--cat-red: #ff3b30;
+	--cat-red-ink: #c4000f;
+	--cat-orange: #ff9500;
+	--cat-orange-ink: #b34d00;
+	/* Category yellow IS the accent, so the app never shows two yellows side by side. */
+	--cat-yellow: #ffc61a;
+	--cat-yellow-ink: #8f5f00;
+	--cat-green: #34c759;
+	--cat-green-ink: #1e7a34;
+	--cat-teal: #30b0c7;
+	--cat-teal-ink: #00707f;
+	--cat-blue: #007aff;
+	--cat-blue-ink: #0058c4;
+	--cat-gray: #8e8e93;
+	--cat-gray-ink: #5c5c61;
+	--cat-graphite: #1c1c1e;
+	--cat-graphite-ink: #1c1c1e;
+
+	/* Neutral surfaces for covers, avatars and the sign-in artwork. */
+	--neutral-cover: #eaeaea;
+	--avatar: #eaeaea;
+	--avatar-foreground: #1a1a1a;
+}
+
+.dark {
+	--tint: var(--accent-dark, #ffc61a);
+	--tint-foreground: #1a1a1a;
+	--link: #fafafa;
+	--ring: #ffffff80;
+
+	--background: #111111;
+	--foreground: #fafafa;
+	--card: #1a1a1a;
+	--popover: #242424;
+	--primary: #fafafa;
+	--primary-foreground: #111111;
+	--secondary: #242424;
+	--secondary-foreground: #fafafa;
+	--muted: #242424;
+	--muted-foreground: #a0a0a0;
+	--accent: #2a2a2a;
+	--accent-foreground: #fafafa;
+	--destructive: #ff453a;
+	--border: #2e2e2e;
+	--input: #383838;
+
+	--chart-2: #8e8e93;
+	--chart-3: #48484a;
+
+	--sidebar: #111111d9;
+	--sidebar-accent: #fafafa14;
+
+	--glass: #24242499;
+	--glass-border: #fafafa1a;
+	--shadow-color: 0 0% 0%;
+
+	--cat-red-ink: #ff7a70;
+	--cat-orange-ink: #ffb340;
+	--cat-yellow-ink: #ffd60a;
+	--cat-green-ink: #4cd964;
+	--cat-teal-ink: #6ed3e6;
+	--cat-blue-ink: #5aa9ff;
+	--cat-gray-ink: #b8b8bd;
+	--cat-graphite: #8e8e93;
+	--cat-graphite-ink: #e5e5ea;
+
+	--neutral-cover: #2a2a2a;
+	--avatar: #2a2a2a;
+	--avatar-foreground: #fafafa;
+}
+
+@theme inline {
+	--color-link: var(--link);
+	--color-avatar: var(--avatar);
+	--color-avatar-foreground: var(--avatar-foreground);
+	--color-neutral-cover: var(--neutral-cover);
+	--color-cat-red: var(--cat-red);
+	--color-cat-red-ink: var(--cat-red-ink);
+	--color-cat-orange: var(--cat-orange);
+	--color-cat-orange-ink: var(--cat-orange-ink);
+	--color-cat-yellow: var(--cat-yellow);
+	--color-cat-yellow-ink: var(--cat-yellow-ink);
+	--color-cat-green: var(--cat-green);
+	--color-cat-green-ink: var(--cat-green-ink);
+	--color-cat-teal: var(--cat-teal);
+	--color-cat-teal-ink: var(--cat-teal-ink);
+	--color-cat-blue: var(--cat-blue);
+	--color-cat-blue-ink: var(--cat-blue-ink);
+	--color-cat-gray: var(--cat-gray);
+	--color-cat-gray-ink: var(--cat-gray-ink);
+	--color-cat-graphite: var(--cat-graphite);
+	--color-cat-graphite-ink: var(--cat-graphite-ink);
+}
+
+/* Text selection: the highlighter, ink text stays readable on it. */
+::selection {
+	@apply bg-tint/40;
+}
+
+/*
+ * Checked controls (to-dos, checkboxes, switches) use the accent instead of the ink primary that the
+ * shared components default to. Unlayered, so it wins over the components' utility classes.
+ */
+[data-slot="checkbox"]:is([data-state="checked"], [data-checked]:not([data-checked="false"])) {
+	background-color: var(--tint);
+	border-color: var(--tint);
+	color: var(--tint-foreground);
+}
+[data-slot="switch"]:is([data-state="checked"], [data-checked]:not([data-checked="false"])) {
+	background-color: var(--tint);
+}
+[data-slot="switch"]:is([data-state="checked"], [data-checked]:not([data-checked="false"]))
+	[data-slot="switch-thumb"] {
+	background-color: #1a1a1a;
+}
+
+/* The active sidebar item is marked with the highlighter: a yellow wash behind ink text and icon. */
+[data-sidebar="menu-button"][data-active="true"],
+[data-sidebar="menu-sub-button"][data-active="true"] {
+	background-color: color-mix(in srgb, var(--tint) 40%, transparent);
+}
+
+/* Density (Settings → Appearance). Everything is rem-based, so the root size scales the UI. */
+html[data-density="compact"] {
+	font-size: 15px;
+}
+
+/* Editor blocks are textareas; let them grow with their content. */
+.block-input {
+	field-sizing: content;
+	resize: none;
+	overflow: hidden;
+}
+
+/* Tiny rendered page preview inside document cards. */
+.doc-preview {
+	font-size: 6.5px;
+	line-height: 1.45;
+}

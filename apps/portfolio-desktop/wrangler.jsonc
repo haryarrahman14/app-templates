@@ -1,0 +1,9 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "tpl-desktop",
+	"compatibility_date": "2026-11-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"main": "@tanstack/react-start/server-entry",
+	// The preview's one address. DNS for the domain is on Cloudflare, so a deploy creates the record and certificate.
+	"routes": [{ "pattern": "desktop.blog.haryarrahman.tech", "custom_domain": true }]
+}

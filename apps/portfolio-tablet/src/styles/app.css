@@ -1,0 +1,237 @@
+@import "@repo/ui/styles/globals.css";
+
+/* Scan this app's own sources too (the ui package scans itself). */
+@source "../";
+
+/*
+ * Palette measured from a shipping product: pure neutral surfaces (zero chroma), near-black text,
+ * one brand pair. Aqua #7FE3D4 is the accent (--tint) and always carries deep teal #0B3B3C text;
+ * deep teal is the secondary solid and carries aqua or white text. Category colours (the shared
+ * system-style set) are solid fills for app tiles, covers and labels only.
+ */
+:root {
+	--aqua: #7fe3d4;
+	--teal-deep: #0b3b3c;
+
+	--tint: #7fe3d4;
+	--tint-foreground: #0b3b3c;
+	/* The accent as readable text or a focus ring on the current surface. */
+	--tint-text: #0b3b3c;
+
+	--background: #ffffff;
+	--foreground: #111111;
+	--card: #ffffff;
+	--popover: #ffffff;
+	--secondary: #eeeeee;
+	--secondary-foreground: #111111;
+	--muted: #eeeeee;
+	--muted-foreground: #555555;
+	--accent: #f4f4f4;
+	--accent-foreground: #111111;
+	--destructive: #d70015;
+	--border: #e0e0e0;
+	--input: #e0e0e0;
+	--ring: var(--tint-text);
+
+	--chart-1: var(--tint);
+	--chart-2: #0b3b3c;
+	--chart-3: #8e8e93;
+	--chart-4: #c7c7c7;
+	--chart-5: #007aff;
+
+	/* Pure black (white in dark) for translucent hover, track and chip fills: stays zero-chroma. */
+	--shade: #000000;
+
+	--sidebar: #ffffffcc;
+	--sidebar-accent: #0000000f;
+
+	--glass: #ffffffb8;
+	--glass-border: #ffffff99;
+	--shadow-color: 0 0% 0%;
+
+	/* Category set: solid fills, plus the glyph or label colour on each. */
+	--cat-red: #ff3b30;
+	--cat-orange: #ff9500;
+	--cat-yellow: #ffcc00;
+	--cat-green: #34c759;
+	--cat-teal: #30b0c7;
+	--cat-blue: #007aff;
+	--cat-gray: #8e8e93;
+	--cat-graphite: #1c1c1e;
+	--cat-ink: #ffffff;
+	--cat-ink-dark: #1c1c1e;
+}
+
+.dark {
+	--tint: #7fe3d4;
+	--tint-foreground: #0b3b3c;
+	--tint-text: #7fe3d4;
+
+	--background: #121212;
+	--foreground: #ffffff;
+	--card: #1e1e1e;
+	--popover: #2a2a2a;
+	--secondary: #2a2a2a;
+	--secondary-foreground: #ffffff;
+	--muted: #2a2a2a;
+	--muted-foreground: #b3b3b3;
+	--accent: #2a2a2a;
+	--accent-foreground: #ffffff;
+	--destructive: #ff3b30;
+	--border: #3a3a3a;
+	--input: #3a3a3a;
+
+	--chart-2: #e0e0e0;
+	--chart-3: #8e8e93;
+	--chart-4: #48484a;
+	--chart-5: #007aff;
+
+	--shade: #ffffff;
+
+	--sidebar: #1e1e1ecc;
+	--sidebar-accent: #ffffff14;
+
+	--glass: #1e1e1eb8;
+	--glass-border: #ffffff1a;
+	--shadow-color: 0 0% 0%;
+
+	--cat-graphite: #3a3a3a;
+}
+
+@theme {
+	/* Sheet and tile motion curve. */
+	--ease-sheet: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@theme inline {
+	--color-aqua: var(--aqua);
+	--color-teal-deep: var(--teal-deep);
+	--color-tint-text: var(--tint-text);
+	--color-shade: var(--shade);
+	--color-cat-red: var(--cat-red);
+	--color-cat-orange: var(--cat-orange);
+	--color-cat-yellow: var(--cat-yellow);
+	--color-cat-green: var(--cat-green);
+	--color-cat-teal: var(--cat-teal);
+	--color-cat-blue: var(--cat-blue);
+	--color-cat-gray: var(--cat-gray);
+	--color-cat-graphite: var(--cat-graphite);
+}
+
+/*
+ * Accent options (Settings): aqua plus colours from the category set. On <html data-accent> for
+ * the live accent, or on any element with data-accent (the Settings swatches). Add one: a block
+ * here plus an entry in src/lib/preferences.ts. --tint-text is the accent as readable text: on
+ * light surfaces only aqua has a dark partner (deep teal); the others fall back to the text colour.
+ */
+[data-accent="aqua"] {
+	--tint: #7fe3d4;
+	--tint-foreground: #0b3b3c;
+	--tint-text: #0b3b3c;
+}
+.dark[data-accent="aqua"],
+.dark [data-accent="aqua"] {
+	--tint-text: #7fe3d4;
+}
+[data-accent="blue"] {
+	--tint: #007aff;
+	--tint-foreground: #ffffff;
+	--tint-text: var(--foreground);
+}
+.dark[data-accent="blue"],
+.dark [data-accent="blue"] {
+	--tint-text: #007aff;
+}
+[data-accent="orange"] {
+	--tint: #ff9500;
+	--tint-foreground: #1c1c1e;
+	--tint-text: var(--foreground);
+}
+.dark[data-accent="orange"],
+.dark [data-accent="orange"] {
+	--tint-text: #ff9500;
+}
+[data-accent="teal"] {
+	--tint: #30b0c7;
+	--tint-foreground: #1c1c1e;
+	--tint-text: var(--foreground);
+}
+.dark[data-accent="teal"],
+.dark [data-accent="teal"] {
+	--tint-text: #30b0c7;
+}
+
+/*
+ * Wallpapers: flat fields, no images. Gray is the default; Pure is white in light and black in
+ * dark; Aqua is the brand field (aqua in light, deep teal in dark, so home labels stay readable).
+ * Each sets --wallpaper for light and dark, on <html> (the live wallpaper) or on any element with
+ * data-wallpaper (the Settings swatches). Add one: a block here plus an entry in src/lib/preferences.ts.
+ */
+:root,
+[data-wallpaper="gray"] {
+	--wallpaper: #eeeeee;
+}
+.dark,
+.dark [data-wallpaper="gray"] {
+	--wallpaper: #121212;
+}
+[data-wallpaper="pure"] {
+	--wallpaper: #ffffff;
+}
+.dark[data-wallpaper="pure"],
+.dark [data-wallpaper="pure"] {
+	--wallpaper: #000000;
+}
+[data-wallpaper="aqua"] {
+	--wallpaper: #7fe3d4;
+}
+.dark[data-wallpaper="aqua"],
+.dark [data-wallpaper="aqua"] {
+	--wallpaper: #0b3b3c;
+}
+
+@utility wallpaper {
+	background: var(--wallpaper);
+	background-attachment: fixed;
+}
+
+/* Widget cards, dock and toolbars: white on the gray field (dark: the raised surface). */
+@utility glass-strong {
+	background-color: #ffffff;
+	border: 1px solid #0000000a;
+	-webkit-backdrop-filter: saturate(180%) blur(28px);
+	backdrop-filter: saturate(180%) blur(28px);
+	&:where(.dark, .dark *) {
+		background-color: #1e1e1e;
+		border-color: #ffffff14;
+	}
+}
+
+@utility scrollbar-none {
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+/* Edit mode wobble. Off when reduced motion is on (system or Settings). */
+@keyframes jiggle {
+	0%,
+	100% {
+		transform: rotate(-0.5deg);
+	}
+	50% {
+		transform: rotate(0.5deg);
+	}
+}
+.jiggle {
+	animation: jiggle 0.32s ease-in-out infinite;
+}
+:root[data-reduce-motion="on"] .jiggle {
+	animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	:root:not([data-reduce-motion="off"]) .jiggle {
+		animation: none;
+	}
+}
