@@ -3,10 +3,11 @@ title: Why is almost every AI service written in Python? Why not Go, which is si
 excerpt: I ran the same request in Python, Go and Rust. The model step cost the same in all three.
 tags: Python, Artificial Intelligence, Golang, Rust, Software Engineering
 publishedAt: 2026-11-18
+pinned: true
 lang: en
 cover: https://raw.githubusercontent.com/haryarrahman14/ai-service-series/main/content/01-why-python/img/en/thumb.png
-share: /og/why-ai-services-use-python.png
-video: /video/why-ai-services-use-python.mp4
+share: https://haryarrahman.tech/og/why-ai-services-use-python.png
+video: https://haryarrahman.tech/video/why-ai-services-use-python.mp4
 ---
 
 *Bassically · AI Service series, part 1. I measured this on my own machine. The code is in the repo.*
@@ -300,5 +301,6 @@ Code: [github.com/haryarrahman14/ai-service-series](https://github.com/haryarrah
 
 - Instagram (Bahasa Indonesia): [@dasarnya.id](https://www.instagram.com/dasarnya.id/)
 - Instagram (English): [@bassically.en](https://www.instagram.com/bassically.en/)
-- LinkedIn: [Hary Arrahman](https://www.linkedin.com/in/hary-arrahman)
-- GitHub: [haryarrahman14/ai-service-series](https://github.com/haryarrahman14/ai-service-series)
+- Threads (Bahasa Indonesia): [@dasarnya.id](https://www.threads.com/@dasarnya.id)
+- Threads (English): [@bassically.en](https://www.threads.com/@bassically.en)
+- Medium: [@haryarrahman14](https://medium.com/@haryarrahman14)

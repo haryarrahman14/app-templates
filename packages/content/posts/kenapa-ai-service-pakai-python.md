@@ -6,8 +6,8 @@ publishedAt: 2026-11-18
 lang: id
 translationOf: why-ai-services-use-python
 cover: https://raw.githubusercontent.com/haryarrahman14/ai-service-series/main/content/01-why-python/img/id/thumb.png
-share: /og/kenapa-ai-service-pakai-python.png
-video: /video/kenapa-ai-service-pakai-python.mp4
+share: https://haryarrahman.tech/og/kenapa-ai-service-pakai-python.png
+video: https://haryarrahman.tech/video/kenapa-ai-service-pakai-python.mp4
 ---
 
 *Dasarnya · Seri AI Service, bagian 1. Semua saya ukur di mesin saya sendiri. Kodenya ada di repo.*
@@ -301,5 +301,6 @@ Kode: [github.com/haryarrahman14/ai-service-series](https://github.com/haryarrah
 
 - Instagram (Bahasa Indonesia): [@dasarnya.id](https://www.instagram.com/dasarnya.id/)
 - Instagram (English): [@bassically.en](https://www.instagram.com/bassically.en/)
-- LinkedIn: [Hary Arrahman](https://www.linkedin.com/in/hary-arrahman)
-- GitHub: [haryarrahman14/ai-service-series](https://github.com/haryarrahman14/ai-service-series)
+- Threads (Bahasa Indonesia): [@dasarnya.id](https://www.threads.com/@dasarnya.id)
+- Threads (English): [@bassically.en](https://www.threads.com/@bassically.en)
+- Medium: [@haryarrahman14](https://medium.com/@haryarrahman14)

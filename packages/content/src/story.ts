@@ -71,7 +71,7 @@ export const story: Story = {
 			year: "Now",
 			period: "Today",
 			title: "And that’s how I got here",
-			body: "I work mostly on MapTrack’s app. I’m also the founding engineer of BOS, the internal CRM that replaced HubSpot.",
+			body: "Until Nov 2026 I worked mostly on MapTrack’s app. I was also the founding engineer of BOS, the internal CRM that replaced HubSpot.",
 			refs: { experiences: ["maptrack"] },
 		},
 	],
