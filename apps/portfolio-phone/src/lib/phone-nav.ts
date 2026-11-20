@@ -121,11 +121,13 @@ declare global {
  * Inline in <head> on the static build only (empty otherwise). That build is one HTML file
  * rendered for bare `/`, so the router must also start at `/` to hydrate the same tree: this
  * moves `?app=…&id=…` aside before the app loads, and hides the lock screen when it opens an
- * app. `usePhoneNavSync` puts the link back right after hydration. Runs once per page load.
+ * app. `usePhoneNavSync` puts the link back right after hydration. Runs once per page load: a visit
+ * that starts at bare `/` marks itself done too, or the router's re-inserted copy of this script would
+ * take the first in-phone link with an id (a project's page) for a deep link and send it home.
  */
 export const deepLinkScript =
 	import.meta.env.VITE_STATIC_PAGE === true
-		? `(()=>{try{var l=location;if(!l.search||"__phoneDeepLink" in window)return;var a=new URLSearchParams(l.search).get("app");window.__phoneDeepLink=l.pathname+l.search+l.hash;history.replaceState(history.state,"",l.pathname+l.hash);if(${JSON.stringify(APP_IDS)}.indexOf(a)>-1)document.documentElement.dataset.unlocked=""}catch(_){}})()`
+		? `(()=>{try{var l=location;if("__phoneDeepLink" in window)return;if(!l.search){window.__phoneDeepLink="";return}var a=new URLSearchParams(l.search).get("app");window.__phoneDeepLink=l.pathname+l.search+l.hash;history.replaceState(history.state,"",l.pathname+l.hash);if(${JSON.stringify(APP_IDS)}.indexOf(a)>-1)document.documentElement.dataset.unlocked=""}catch(_){}})()`
 		: "";
 
 /**
