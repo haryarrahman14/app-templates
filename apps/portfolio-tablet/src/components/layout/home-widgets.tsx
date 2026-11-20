@@ -5,6 +5,7 @@ import { artworksQuery } from "@/features/gallery/api/queries";
 import type { WidgetSlot } from "@/features/home/types/widget-slot";
 import { notebookQuery } from "@/features/notes/api/queries";
 import { excerpt } from "@/features/notes/utils/excerpt";
+import { sortNotes } from "@/features/notes/utils/sort-notes";
 import { projectsQuery } from "@/features/projects/api/queries";
 import { widgetContentQuery } from "@/features/widgets/api/queries";
 import {
@@ -32,8 +33,8 @@ export function useHomeWidgets(open: (app: AppId, id?: string) => void): WidgetS
 	const { data: content } = useSuspenseQuery(widgetContentQuery);
 
 	const featured = projects.find((p) => p.featured) ?? projects[0];
-	const recentNotes = [...notebook.notes]
-		.sort((a, b) => (b.date ?? "").localeCompare(a.date ?? ""))
+	// Same order as the Notes list (pinned first), so the widget's top note is the list's first.
+	const recentNotes = sortNotes(notebook.notes)
 		.slice(0, 3)
 		.map((n) => ({
 			id: n.id,

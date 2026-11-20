@@ -23,7 +23,14 @@ function parsePost(path: string, raw: string) {
 	};
 }
 
-/** English posts only (no `lang`, or `lang: en`), newest first. Translations are left out. */
+/** A comma-separated frontmatter value as a list. */
+const list = (value: string | undefined) =>
+	(value ?? "")
+		.split(",")
+		.map((item) => item.trim())
+		.filter(Boolean);
+
+/** English posts only (no `lang`, or `lang: en`): pinned first, then newest first. Translations are left out. */
 async function listNotes() {
 	const notes: NoteInput[] = Object.entries(FILES)
 		.map(([path, raw]) => parsePost(path, raw))
@@ -32,14 +39,13 @@ async function listNotes() {
 			id: slug,
 			title: meta.title ?? slug,
 			date: meta.publishedAt ?? "",
-			tags: (meta.tags ?? "")
-				.split(",")
-				.map((tag) => tag.trim())
-				.filter(Boolean),
+			pinned: meta.pinned === "true",
+			tags: list(meta.tags),
+			stack: list(meta.stack),
 			excerpt: meta.excerpt,
 			body,
 		}))
-		.sort((a, b) => b.date.localeCompare(a.date));
+		.sort((a, b) => Number(b.pinned) - Number(a.pinned) || b.date.localeCompare(a.date));
 	return noteSchema.array().parse(notes);
 }
 

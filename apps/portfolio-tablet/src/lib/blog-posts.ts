@@ -16,9 +16,21 @@ export type BlogPost = {
 	/** ISO date. */
 	publishedAt: string;
 	tags: string[];
+	/** `pinned: true` in the frontmatter: shown first in lists. */
+	pinned: boolean;
+	/** `stack: React, TypeScript, …`: what the post's project is built with. Empty when not given. */
+	stack: string[];
 	/** Markdown, without the frontmatter. */
 	body: string;
 };
+
+/** A comma-separated frontmatter value as a list. */
+function list(value: string | undefined) {
+	return (value ?? "")
+		.split(",")
+		.map((t) => t.trim())
+		.filter(Boolean);
+}
 
 /** A flat `key: value` frontmatter block, as the content package writes it. */
 function parse(slug: string, raw: string) {
@@ -40,10 +52,9 @@ export function englishPosts(): BlogPost[] {
 			title: meta.title ?? slug,
 			excerpt: meta.excerpt ?? "",
 			publishedAt: meta.publishedAt ?? "",
-			tags: (meta.tags ?? "")
-				.split(",")
-				.map((t) => t.trim())
-				.filter(Boolean),
+			tags: list(meta.tags),
+			pinned: meta.pinned === "true",
+			stack: list(meta.stack),
 			body,
 		}))
 		.sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));

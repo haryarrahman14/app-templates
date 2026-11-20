@@ -49,7 +49,7 @@ export function AppLayer({
 				<motion.section
 					key={app}
 					aria-label={APPS[app].label}
-					className="absolute inset-0 z-20 overflow-hidden bg-(--grouped) text-foreground"
+					className="group/app absolute inset-0 z-20 overflow-hidden bg-(--grouped) text-foreground"
 					style={{ transformOrigin: `${origin.x}% ${origin.y}%` }}
 					initial={hidden}
 					animate={{ opacity: 1, scale: 1, borderRadius: 0, filter: "blur(0px)" }}
@@ -83,6 +83,8 @@ function HomeIndicator({ onHome, light }: { onHome: () => void; light: boolean }
 				className={cn(
 					"h-[5px] w-[134px] rounded-full transition-[width,background-color] group-hover:w-[150px] group-focus-visible:ring-2 group-focus-visible:ring-ring",
 					light ? "bg-white/85 group-hover:bg-white" : "bg-foreground/80 group-hover:bg-foreground",
+					// Over a dark overlay inside the app (a note's picture viewer), the bar turns light too.
+					"group-has-[[data-dark-overlay]]/app:bg-white/85 group-has-[[data-dark-overlay]]/app:group-hover:bg-white",
 				)}
 			/>
 		</motion.button>

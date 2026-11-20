@@ -20,7 +20,8 @@ async function getNotebook() {
 				folder: "blog",
 				title: post.title,
 				date: post.publishedAt,
-				pinned: false,
+				pinned: post.pinned,
+				stack: post.stack,
 				excerpt: post.excerpt,
 				body: `# ${post.title}\n\n${post.body}`,
 			})),
@@ -29,6 +30,7 @@ async function getNotebook() {
 				folder: "story",
 				title: story.title,
 				pinned: false,
+				stack: [],
 				excerpt: chapters[0]?.body,
 				body: [
 					`# ${story.title}`,

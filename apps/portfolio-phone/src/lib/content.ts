@@ -24,6 +24,10 @@ export type ContentPost = {
 	excerpt: string;
 	publishedAt: string;
 	tags: string[];
+	/** `pinned: true` in the frontmatter. */
+	pinned: boolean;
+	/** `stack: React, TypeScript, …`: what the post's project was built with. */
+	stack: string[];
 	lang?: string;
 	translationOf?: string;
 	body: string;
@@ -35,6 +39,14 @@ const FILES = import.meta.glob<string>("../../../../packages/content/posts/*.md"
 	import: "default",
 	eager: true,
 });
+
+/** `a, b, c` → `["a", "b", "c"]`. */
+function splitList(value: string | undefined) {
+	return (value ?? "")
+		.split(",")
+		.map((item) => item.trim())
+		.filter(Boolean);
+}
 
 function parsePost(path: string, raw: string): ContentPost {
 	const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
@@ -48,10 +60,9 @@ function parsePost(path: string, raw: string): ContentPost {
 		title: meta.title ?? "",
 		excerpt: meta.excerpt ?? "",
 		publishedAt: meta.publishedAt ?? "",
-		tags: (meta.tags ?? "")
-			.split(",")
-			.map((tag) => tag.trim())
-			.filter(Boolean),
+		tags: splitList(meta.tags),
+		pinned: meta.pinned === "true",
+		stack: splitList(meta.stack),
 		lang: meta.lang,
 		translationOf: meta.translationOf,
 		body: (match?.[2] ?? raw).trim(),

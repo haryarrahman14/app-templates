@@ -1,11 +1,28 @@
+import { useMemo } from "react";
 import Markdown, { type Components } from "react-markdown";
+import remarkGfm from "remark-gfm";
+import type { NoteHeading, NotePicture } from "@/features/notes/schemas/note";
 
 /** Typography for notes: a reading column with a serif voice for headings and quotes. */
+/** Tables, strikethrough and task lists, as the blog writes them. */
+const GFM = [remarkGfm];
+
 const components: Components = {
-	h2: ({ children }) => (
-		<h2 className="mt-9 mb-3 font-serif font-semibold text-[1.35rem] text-foreground tracking-tight">
+	// A table scrolls sideways inside its own box, so a wide one never pushes the page (remark-gfm reads it).
+	table: ({ children }) => (
+		<div className="my-5 overflow-x-auto rounded-xl border border-border">
+			<table className="w-full border-collapse text-left text-[0.9em]">{children}</table>
+		</div>
+	),
+	th: ({ children }) => (
+		<th className="border-border border-b bg-foreground/[0.04] px-3 py-2 font-semibold whitespace-nowrap">
 			{children}
-		</h2>
+		</th>
+	),
+	td: ({ children }) => (
+		<td className="border-border border-b px-3 py-2 align-top [tr:last-child>&]:border-b-0">
+			{children}
+		</td>
 	),
 	h3: ({ children }) => <h3 className="mt-7 mb-2 font-semibold text-lg">{children}</h3>,
 	p: ({ children }) => <p className="my-4">{children}</p>,
@@ -37,15 +54,6 @@ const components: Components = {
 			{children}
 		</pre>
 	),
-	img: ({ src, alt }) => (
-		<img
-			src={typeof src === "string" ? src : undefined}
-			alt={alt ?? ""}
-			loading="lazy"
-			decoding="async"
-			className="my-6 h-auto w-full rounded-xl bg-foreground/[0.04]"
-		/>
-	),
 	a: ({ children, href }) => (
 		<a
 			href={href}
@@ -59,10 +67,62 @@ const components: Components = {
 	hr: () => <hr className="my-8 border-foreground/10" />,
 };
 
-export function NoteMarkdown({ children }: { children: string }) {
+type NoteMarkdownProps = {
+	children: string;
+	/** From noteHeadings(children): gives each `##` its id, so the outline can jump to it. */
+	headings: NoteHeading[];
+	/** From notePictures(children): each picture opens full screen at its index. */
+	pictures: NotePicture[];
+	/** `from` is the picture's button, so focus can go back to it when the viewer closes. */
+	onOpenPicture: (index: number, from: HTMLElement) => void;
+};
+
+export function NoteMarkdown({ children, headings, pictures, onOpenPicture }: NoteMarkdownProps) {
+	const all = useMemo<Components>(
+		() => ({
+			...components,
+			h2: ({ children: text, node }) => (
+				<h2
+					id={headings.find((h) => h.line === node?.position?.start.line)?.id}
+					tabIndex={-1}
+					className="mt-9 mb-3 scroll-mt-6 font-semibold font-serif text-[1.35rem] text-foreground tracking-tight focus:outline-none"
+				>
+					{text}
+				</h2>
+			),
+			img: ({ src, alt, node }) => {
+				const url = typeof src === "string" ? src : undefined;
+				const line = node?.position?.start.line;
+				const index = pictures.findIndex((p) => p.src === url && p.line === line);
+				const picture = (
+					<img
+						src={url}
+						alt={alt ?? ""}
+						loading="lazy"
+						decoding="async"
+						className="h-auto w-full rounded-xl bg-foreground/[0.04]"
+					/>
+				);
+				if (index < 0) return <span className="my-6 block">{picture}</span>;
+				return (
+					<button
+						type="button"
+						onClick={(event) => onOpenPicture(index, event.currentTarget)}
+						aria-label={`Open picture ${index + 1} of ${pictures.length} full screen`}
+						className="group/picture my-6 block w-full cursor-zoom-in rounded-xl outline-none transition-opacity hover:opacity-95 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+					>
+						{picture}
+					</button>
+				);
+			},
+		}),
+		[headings, pictures, onOpenPicture],
+	);
 	return (
 		<div className="text-[15.5px] text-foreground/80 leading-[1.75]">
-			<Markdown components={components}>{children}</Markdown>
+			<Markdown remarkPlugins={GFM} components={all}>
+				{children}
+			</Markdown>
 		</div>
 	);
 }
