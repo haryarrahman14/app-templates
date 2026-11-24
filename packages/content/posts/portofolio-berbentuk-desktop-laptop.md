@@ -9,7 +9,7 @@ cover: https://haryarrahman.tech/posts/portfolio-as-a-laptop-desktop/desktop-lig
 share: https://haryarrahman.tech/og/portofolio-berbentuk-desktop-laptop.png
 ---
 
-*Seri Template, bagian 1 dari 6. Kodenya ada di repo.*
+*Seri Template, bagian 2 dari 6. Kodenya ada di repo.*
 
 Jawaban singkat: buat tiap bagian portfolio jadi jendela, bukan satu halaman panjang. Jendela yang paling depan ditulis di alamat, jadi link-nya tetap bisa dibagikan. Warnanya putih dan abu-abu, dan cuma satu warna, tomat, untuk tombol utama.
 
@@ -110,4 +110,4 @@ Set up a project from a template for me.
 Ask me for anything you need before you start. Then run it locally and show me.
 ```
 
-[Bagian 2](https://haryarrahman.tech/blog/portofolio-berbentuk-ponsel) adalah portfolio yang sama dalam bentuk ponsel.
+[Bagian 3](https://haryarrahman.tech/blog/portofolio-berbentuk-layar-tablet) adalah portfolio yang sama dalam bentuk home screen tablet.

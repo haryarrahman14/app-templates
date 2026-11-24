@@ -9,7 +9,7 @@ cover: https://haryarrahman.tech/posts/portfolio-as-a-laptop-desktop/desktop-lig
 share: https://haryarrahman.tech/og/portfolio-as-a-laptop-desktop.png
 ---
 
-*Template series, part 1 of 6. The code is in the repo.*
+*Template series, part 2 of 6. The code is in the repo.*
 
 Short answer: make each part of the portfolio a window, not one long page. The window in front is written in the address, so links can still be shared. The colours are white and gray, and only one colour, tomato, is for the main button.
 
@@ -110,4 +110,4 @@ Set up a project from a template for me.
 Ask me for anything you need before you start. Then run it locally and show me.
 ```
 
-[Part 2](https://haryarrahman.tech/blog/portfolio-as-a-phone) is the same portfolio shaped like a phone.
+[Part 3](https://haryarrahman.tech/blog/portfolio-as-a-tablet-home-screen) is the same portfolio shaped like a tablet home screen.

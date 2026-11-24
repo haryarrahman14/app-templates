@@ -110,4 +110,4 @@ Set up a project from a template for me.
 Ask me for anything you need before you start. Then run it locally and show me.
 ```
 
-Ini bagian terakhir dari enam. [Bagian 1](https://haryarrahman.tech/blog/portofolio-berbentuk-desktop-laptop) mulai lagi dari desktop laptop.
+Ini bagian terakhir dari enam. [Bagian 1](https://haryarrahman.tech/blog/portofolio-berbentuk-ponsel) mulai lagi dari ponsel.

@@ -9,7 +9,7 @@ cover: https://haryarrahman.tech/posts/portfolio-as-a-phone/desktop-home-v2.jpg
 share: https://haryarrahman.tech/og/portofolio-berbentuk-ponsel.png
 ---
 
-*Seri Template, bagian 2 dari 6. Kodenya ada di repo.*
+*Seri Template, bagian 1 dari 6. Kodenya ada di repo.*
 
 Jawaban singkat: buat portfolio-nya bergerak seperti ponsel, tapi jangan pernah bikin pengunjung menunggu. Lock screen-nya terbuka dengan satu tap, home screen-nya jadi menu, dan tiap aplikasi selalu punya jalan pulang.
 
@@ -121,4 +121,4 @@ Set up a project from a template for me.
 Ask me for anything you need before you start. Then run it locally and show me.
 ```
 
-[Bagian 3](https://haryarrahman.tech/blog/portofolio-berbentuk-layar-tablet) adalah portfolio yang sama dalam bentuk home screen tablet.
+[Bagian 2](https://haryarrahman.tech/blog/portofolio-berbentuk-desktop-laptop) adalah portfolio yang sama dalam bentuk desktop laptop.

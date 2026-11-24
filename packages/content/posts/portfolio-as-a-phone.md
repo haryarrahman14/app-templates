@@ -9,7 +9,7 @@ cover: https://haryarrahman.tech/posts/portfolio-as-a-phone/desktop-home-v2.jpg
 share: https://haryarrahman.tech/og/portfolio-as-a-phone.png
 ---
 
-*Template series, part 2 of 6. The code is in the repo.*
+*Template series, part 1 of 6. The code is in the repo.*
 
 Short answer: make the portfolio move like a phone, but never make the visitor wait. The lock screen opens with one tap, the home screen is the menu, and every app always has a way home.
 
@@ -121,4 +121,4 @@ Set up a project from a template for me.
 Ask me for anything you need before you start. Then run it locally and show me.
 ```
 
-[Part 3](https://haryarrahman.tech/blog/portfolio-as-a-tablet-home-screen) is the same portfolio shaped like a tablet home screen.
+[Part 2](https://haryarrahman.tech/blog/portfolio-as-a-laptop-desktop) is the same portfolio shaped like a laptop desktop.

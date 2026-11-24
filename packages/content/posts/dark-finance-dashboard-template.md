@@ -110,4 +110,4 @@ Set up a project from a template for me.
 Ask me for anything you need before you start. Then run it locally and show me.
 ```
 
-That is the last of the six. [Part 1](https://haryarrahman.tech/blog/portfolio-as-a-laptop-desktop) starts again at the laptop desktop.
+That is the last of the six. [Part 1](https://haryarrahman.tech/blog/portfolio-as-a-phone) starts again at the phone.
